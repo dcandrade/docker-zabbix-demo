@@ -1,6 +1,8 @@
 default: setup run-manager run-agents
 
-run: run-manager run-agents
+run: setup run-manager run-agents
+
+purge: clean remove
 
 setup:
 	@echo "Setting file permissions and creating Docker network"
@@ -25,3 +27,4 @@ remove:
 	@echo "Cleaning Docker env"
 	docker image ls -aq | cut -c-12 | xargs docker image rm -f
 	docker network remove zabbix-net
+
